@@ -9,8 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public bool Freezed;
     public bool IsMoving;
     [Header("Stats")]
-    public float MoveSpeed;
-    public float RotateSpeed;
+    public float Speed;
+    public float Rotate;
+    private float MoveSpeed;
+    private float RotateSpeed;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -24,8 +26,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             IsMoving = true;
-            RotateSpeed = Input.GetAxisRaw("Horizontal") * Time.deltaTime * 150;
-            MoveSpeed = Input.GetAxisRaw("Vertical") * Time.deltaTime * 4;
+            RotateSpeed = Input.GetAxisRaw("Horizontal") * Time.deltaTime * Rotate;
+            MoveSpeed = Input.GetAxisRaw("Vertical") * Time.deltaTime * Speed;
             this.gameObject.transform.Rotate(0, RotateSpeed, 0);
             this.gameObject.transform.Translate(0, 0, MoveSpeed);
         }
