@@ -6,18 +6,22 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     [Header("Controller")]
-    public bool Freezed;
-    public bool IsMoving;
+    public bool Freeze;
+    private bool isMoving;
+
     [Header("Stats")]
     public float Speed;
     public float Rotate;
-    private float MoveSpeed;
-    private float RotateSpeed;
+    private float moveSpeed;
+    private float rotateSpeed;
+
+    [Header("References")]
+    private CharacterController cc;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-        
+        cc = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -25,15 +29,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
-            IsMoving = true;
-            RotateSpeed = Input.GetAxisRaw("Horizontal") * Time.deltaTime * Rotate;
-            MoveSpeed = Input.GetAxisRaw("Vertical") * Time.deltaTime * Speed;
-            this.gameObject.transform.Rotate(0, RotateSpeed, 0);
-            this.gameObject.transform.Translate(0, 0, MoveSpeed);
+            isMoving = true;
+            //Rotate Player
+            rotateSpeed = Input.GetAxisRaw("Horizontal") * Time.deltaTime * Rotate;
+            this.gameObject.transform.Rotate(Vector3.up * rotateSpeed);
+            //Move Player
+            moveSpeed = Input.GetAxisRaw("Vertical") * Time.deltaTime * Speed;
+            this.gameObject.transform.Translate(0, 0, moveSpeed);
         }
         else
         {
-            IsMoving = false;
+            isMoving = false;
         }
     }
 }
