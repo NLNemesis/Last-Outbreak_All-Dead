@@ -1,0 +1,29 @@
+{
+    "items": [
+        {
+            "globalId": "GlobalObjectId_V1-2-000030ab1c21c5e4bb876d166e04d677-1557410201-0",
+            "source": "builtin",
+            "value": "Hierarchy Designer Folder Icon Scene"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-2-000030ab1c21c5e4bb876d166e04d677-1024752289-0",
+            "source": "asset",
+            "value": "b8e2f1c308ef3834f9d357baf3654de6"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-2-000030ab1c21c5e4bb876d166e04d677-1929235078-0",
+            "source": "asset",
+            "value": "b8e2f1c308ef3834f9d357baf3654de6"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-2-000030ab1c21c5e4bb876d166e04d677-869917760-0",
+            "source": "asset",
+            "value": "b8e2f1c308ef3834f9d357baf3654de6"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-2-000030ab1c21c5e4bb876d166e04d677-1945712454-0",
+            "source": "asset",
+            "value": "b8e2f1c308ef3834f9d357baf3654de6"
+        }
+    ]
+}
