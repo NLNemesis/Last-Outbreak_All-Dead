@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public float rotateSpeed;
     private float horizontalMove;
     private float verticalMove;
+
+    [Header("Camera Transform")]
+    public Transform Front;
+    public Transform Reversed;
     #endregion
 
     // Start is called before the first frame update
