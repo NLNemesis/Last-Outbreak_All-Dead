@@ -18,11 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalMove;
     private float verticalMove;
 
-<<<<<<< Updated upstream
     [Header("Camera Transform")]
     public Transform Front;
     public Transform Reversed;
-=======
     [Header("References")]
     [HideInInspector] public Animator animator;
 
@@ -30,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private float inputV;
     private float inputH;
     private bool inputShift;
->>>>>>> Stashed changes
     #endregion
 
     // Start is called before the first frame update
