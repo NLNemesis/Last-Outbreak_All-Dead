@@ -5,15 +5,18 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour
 {
     #region Variables
-    public enum CameraType {Static, Rotate, Follow}
+    public enum CameraType {Static,LookAt,Follow}
     public CameraType Type;
+
+    [Header("Controls")]
     public bool Front;
 
     [Header("References")]
     private Transform PlayerTransform;
     private PlayerMovement PM;
     #endregion
-    // Start is called before the first frame update
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
         PM = FindObjectOfType<PlayerMovement>();
@@ -23,21 +26,21 @@ public class CameraBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Type == CameraType.Rotate)
+        if (Type == CameraType.LookAt)
         {
-            this.transform.Rotate(PlayerTransform.position);
+            this.transform.LookAt(PlayerTransform.position);
         }
         else if (Type == CameraType.Follow)
         {
             if (Front)
             {
-                this.transform.position = PM.Front.position;
-                this.transform.rotation = PM.Front.rotation;
+                this.transform.position = PM.FrontCam.transform.position;
+                this.transform.rotation = PM.FrontCam.transform.rotation;
             }
             else
             {
-                this.transform.position = PM.Reversed.position;
-                this.transform.rotation = PM.Reversed.rotation;
+                this.transform.position = PM.BackCam.transform.position;
+                this.transform.rotation = PM.BackCam.transform.rotation;
             }
         }
     }

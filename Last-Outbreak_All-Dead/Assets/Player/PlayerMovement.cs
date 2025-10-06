@@ -6,6 +6,9 @@ using UnityEngine.Animations;
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
+    [Header("Controls")]
+    public KeyCode RotateKey;
+
     [Header("Controller")]
     public bool freeze;
     [HideInInspector]public bool isMoving;
@@ -19,8 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private float verticalMove;
 
     [Header("Camera Transform")]
-    public Transform Front;
-    public Transform Reversed;
+    public Transform FrontCam;
+    public Transform BackCam;
+
     [Header("References")]
     [HideInInspector] public Animator animator;
 
@@ -43,8 +47,13 @@ public class PlayerMovement : MonoBehaviour
         inputV = Input.GetAxisRaw("Vertical");
         inputH = Input.GetAxisRaw("Horizontal");
 
+        HandleMovement();
         HandleAnimations();
+    }
 
+    #region Handle Movement
+    void HandleMovement()
+    {
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             isMoving = true;
@@ -72,8 +81,32 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = false;
         }
+
+        if (Input.GetKeyDown(RotateKey))
+        {
+            freeze = true;
+            animator.Play("Turn180");
+            StartCoroutine(RotatePlayer());
+        }
     }
 
+    IEnumerator RotatePlayer()
+    {
+        float Timer = 0;
+        float Duration = 1;
+        while (Timer < Duration)
+        {
+            Timer += Time.deltaTime;
+            float Step = Timer / Duration;
+            horizontalMove = Step * -1f;
+            this.gameObject.transform.Rotate(0, horizontalMove, 0);
+            yield return null;
+        }
+        freeze = false;
+    }
+    #endregion
+
+    #region Handle Animations
     void HandleAnimations()
     {
         //Movement
@@ -94,9 +127,10 @@ public class PlayerMovement : MonoBehaviour
         if (inputH != 0 && inputV == 0)
             animator.Play("Walk");
     }
-    
+
     public void Unfreeze()
     {
         freeze = false;
     }
+    #endregion
 }
