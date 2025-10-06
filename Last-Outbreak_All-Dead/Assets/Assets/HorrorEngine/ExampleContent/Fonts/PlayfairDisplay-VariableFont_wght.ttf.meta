@@ -19,3 +19,10 @@ TrueTypeFontImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244541
+  packageName: Retro Horror Template
+  packageVersion: 4.2.1
+  assetPath: Assets/Assets/HorrorEngine/ExampleContent/Fonts/PlayfairDisplay-VariableFont_wght.ttf
+  uploadId: 795286

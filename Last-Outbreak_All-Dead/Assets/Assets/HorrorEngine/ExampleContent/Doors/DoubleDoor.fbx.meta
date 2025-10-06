@@ -8,7 +8,8 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: -4973734387028869240, guid: e055bc4e4f2eb8f4b99abba884307b9c, type: 3}
+    second: {fileID: -4973734387028869240, guid: e055bc4e4f2eb8f4b99abba884307b9c,
+      type: 3}
   materials:
     materialImportMode: 0
     materialName: 0
@@ -109,3 +110,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244541
+  packageName: Retro Horror Template
+  packageVersion: 4.2.1
+  assetPath: Assets/Assets/HorrorEngine/ExampleContent/Doors/DoubleDoor.fbx
+  uploadId: 795286

@@ -12,3 +12,10 @@ ScriptedImporter:
   wrapperCodePath: 
   wrapperClassName: 
   wrapperCodeNamespace: HorrorEngine
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244541
+  packageName: Retro Horror Template
+  packageVersion: 4.2.1
+  assetPath: Assets/Assets/HorrorEngine/ExampleContent/Input/PlayerActions.inputactions
+  uploadId: 795286

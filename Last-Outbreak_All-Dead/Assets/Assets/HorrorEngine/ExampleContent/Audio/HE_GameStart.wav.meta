@@ -21,3 +21,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244541
+  packageName: Retro Horror Template
+  packageVersion: 4.2.1
+  assetPath: Assets/Assets/HorrorEngine/ExampleContent/Audio/HE_GameStart.wav
+  uploadId: 795286

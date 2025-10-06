@@ -1,8 +1,15 @@
 fileFormatVersion: 2
 guid: 65223baed447af640807111dd7fbc012
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244541
+  packageName: Retro Horror Template
+  packageVersion: 4.2.1
+  assetPath: Assets/Assets/HorrorEngine/ExampleContent/Cinematics/MonsterVHS.avi
+  uploadId: 795286
 VideoClipImporter:
   externalObjects: {}
-  serializedVersion: 2
+  serializedVersion: 3
   frameRange: 0
   startFrame: -1
   endFrame: -1
@@ -13,7 +20,7 @@ VideoClipImporter:
   flipHorizontal: 0
   importAudio: 1
   targetSettings:
-    0:
+    :
       enableTranscoding: 1
       codec: 2
       resizeFormat: 0
