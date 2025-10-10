@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     #region Variables
     [Header("Controller")]
     public bool freeze;
-    [HideInInspector]public bool isMoving;
+    private bool isMoving;
+    private bool isSprinting;
 
     [Header("Stats")]
     public float speed;
@@ -46,6 +47,14 @@ public class PlayerMovement : MonoBehaviour
 
         HandleMovement();
         HandleAnimations();
+        #region Speed Controller
+        if (isMoving && !isSprinting)
+            currentSpeed = speed;
+        else if (isMoving && isSprinting)
+            currentSpeed = sprint;
+        else
+            currentSpeed = 0;
+        #endregion
     }
 
     #region Handle Movement
@@ -61,11 +70,17 @@ public class PlayerMovement : MonoBehaviour
             //Move Player
             verticalMove = Input.GetAxisRaw("Vertical") * Time.deltaTime * currentSpeed;
             this.gameObject.transform.Translate(verticalMove, 0, 0);
+
+            if (verticalMove != 0 && Input.GetKey(KeyCode.LeftShift))
+                isSprinting = true;
+            else
+                isSprinting = false;
             #endregion
         }
         else
         {
             isMoving = false;
+            isSprinting = false;
             horizontalMove = 0;
             verticalMove = 0;
         }
@@ -75,12 +90,16 @@ public class PlayerMovement : MonoBehaviour
     #region Handle Animations
     void HandleAnimations()
     {
-        if (inputH != 0 && inputV == 0)
-
         if (verticalMove > 0)
-            animator.Play("Walk");
+        {
+            if (isSprinting) animator.Play("Run");
+            else animator.Play("Walk");
+        }
         else if (verticalMove < 0)
-            animator.Play("Walk_Reverse");
+        {
+            if (isSprinting) animator.Play("Run_Reverse");
+            else animator.Play("Walk_Reverse");
+        }
         else if (horizontalMove == 0 && verticalMove == 0)
             animator.Play("Idle");
 
