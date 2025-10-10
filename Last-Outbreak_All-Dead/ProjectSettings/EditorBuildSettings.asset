@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Assets/HorrorEngine/ExampleContent/Scenes/SampleScene1.unity
     guid: 63a0e531f639fad44b0397aafbded078
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: af4770801c22669469556db8748111f8, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 1fef40e112df35c4bb7d4c791b0169b5, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: f62dc745be64f5f44b716a56ce9bf2c9, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 788b18c8012105144aa380e93190800a, type: 3}
     com.unity.localization.settings: {fileID: 11400000, guid: bad8e076199628443b9beeecefe6745e, type: 2}
