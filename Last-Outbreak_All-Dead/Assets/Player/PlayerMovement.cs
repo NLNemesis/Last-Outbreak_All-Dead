@@ -89,21 +89,6 @@ public class PlayerMovement : MonoBehaviour
     #region Handle Animations
     void HandleAnimations()
     {
-        //Movement
-        if (inputV == 1)
-        {
-            animator.Play("Walk");
-        }
-        else if (inputV == -1)
-        {
-            animator.Play("Walk_Reverse");
-        }
-        else if (inputV == 0 && inputH == 0)
-            animator.Play("Idle");
-
-        //Rotation
-        if (inputH != 0 && inputV == 0)
-            animator.Play("Walk");
         if (verticalMove > 0)
         {
             if (isSprinting)
@@ -120,6 +105,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (verticalMove == 0 && horizontalMove == 0)
             animator.Play("Idle");
+
+        //Rotation
+        if (inputH != 0 && inputV == 0)
+            animator.Play("Walk");
     }
     #endregion
 }
