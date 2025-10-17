@@ -44,7 +44,7 @@ public class PickUpItem : MonoBehaviour
         {
             CanInteract = false;
             if (GroundItem)
-                animator.Play("Pick_Up_Ground");
+                animator.Play("Pick_Down");
             else
                 animator.Play("Pick_Up");
             this.gameObject.SetActive(false);
