@@ -45,6 +45,15 @@ public class PlayerMovement : MonoBehaviour
         inputH = Input.GetAxisRaw("Horizontal");
 
         HandleMovement();
+        HandleAnimations();
+        #region Speed Controller
+        if (isMoving && !isSprinting)
+            currentSpeed = speed;
+        else if (isMoving && isSprinting)
+            currentSpeed = sprint;
+        else
+            currentSpeed = 0;
+        #endregion
     }
 
     #region Handle Movement
@@ -95,6 +104,22 @@ public class PlayerMovement : MonoBehaviour
         //Rotation
         if (inputH != 0 && inputV == 0)
             animator.Play("Walk");
+        if (verticalMove > 0)
+        {
+            if (isSprinting)
+                animator.Play("Run");
+            else
+                animator.Play("Walk");
+        }
+        else if (verticalMove < 0)
+        {
+            if (isSprinting)
+                animator.Play("Run_Reverse");
+            else
+                animator.Play("Walk_Reverse");
+        }
+        else if (verticalMove == 0 && horizontalMove == 0)
+            animator.Play("Idle");
     }
     #endregion
 }
