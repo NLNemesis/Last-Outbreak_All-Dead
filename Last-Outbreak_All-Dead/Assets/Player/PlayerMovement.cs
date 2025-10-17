@@ -110,5 +110,17 @@ public class PlayerMovement : MonoBehaviour
         if (inputH != 0 && inputV == 0)
             animator.Play("Walk");
     }
+
+    public void FreezePlayer()
+    {
+        freeze = true;
+        horizontalMove = 0;
+        verticalMove = 0;
+    }
+
+    public void UnFreezePlayer()
+    {
+        freeze = false;
+    }
     #endregion
 }
