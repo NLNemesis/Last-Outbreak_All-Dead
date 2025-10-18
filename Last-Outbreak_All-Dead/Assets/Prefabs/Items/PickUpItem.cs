@@ -11,15 +11,21 @@ public class PickUpItem : MonoBehaviour
     public bool GroundItem;
     private bool CanInteract;
 
+    [Header("Data")]
+    public string ItemName;
+    public Sprite ItemIcon;
+
     [Header("References")]
     private PlayerMovement PM;
     private Animator animator;
+    private Inventory inventory;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         PM = FindObjectOfType<PlayerMovement>();
         animator = FindObjectOfType<PlayerMovement>().GetComponent<Animator>();
+        inventory = FindObjectOfType<Inventory>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +53,7 @@ public class PickUpItem : MonoBehaviour
             CanInteract = false;
             if (GroundItem) animator.Play("Pick_Down");
             else animator.Play("Pick_Up");
+            inventory.AddItem(ItemName, ItemIcon);
             this.gameObject.SetActive(false);
         }
     }
