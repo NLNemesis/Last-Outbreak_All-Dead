@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     #region Variables
     private int UIOpened;
     public GameObject InventoryUI;
+    public Animator canvasAnimator;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -29,11 +30,15 @@ public class GameManager : MonoBehaviour
             if (InventoryUI.activeSelf == false)
             {
                 UIOpened = 2;
-                InventoryUI.SetActive(true);
+                canvasAnimator.speed = 1000f;
+                canvasAnimator.Play("Open_Inventory");
+                Time.timeScale = 0.001f;
             }
             else
             {
-                InventoryUI.SetActive(false);
+                Time.timeScale = 1f;
+                canvasAnimator.speed = 1f;
+                canvasAnimator.Play("Close_Inventory");
                 UIOpened = 0;
             }
         }
