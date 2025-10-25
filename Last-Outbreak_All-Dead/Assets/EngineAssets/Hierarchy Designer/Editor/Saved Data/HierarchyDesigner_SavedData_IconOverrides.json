@@ -24,6 +24,11 @@
             "globalId": "GlobalObjectId_V1-2-000030ab1c21c5e4bb876d166e04d677-1945712454-0",
             "source": "asset",
             "value": "b8e2f1c308ef3834f9d357baf3654de6"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-2-1de7a71667cbf8248bb3378c7ef5f2c7-1174692835-0",
+            "source": "builtin",
+            "value": "d_Image Icon"
         }
     ]
 }

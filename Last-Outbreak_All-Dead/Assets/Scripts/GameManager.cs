@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     public GameObject InventoryUI;
+    public UnityEvent OpenInventoryEvent;
+    public UnityEvent CloseInventoryEvent;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -31,12 +34,14 @@ public class GameManager : MonoBehaviour
             if (InventoryUI.activeSelf == false)
             {
                 UIOpened = 2;
-                InventoryUI.SetActive(true);
+                Time.timeScale = 0.001f;
+                OpenInventoryEvent.Invoke();
             }
             else
             {
                 UIOpened = 0;
-                InventoryUI.SetActive(false);
+                Time.timeScale = 1;
+                CloseInventoryEvent.Invoke();
             }
         }
     }
