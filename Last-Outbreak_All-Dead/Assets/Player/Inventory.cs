@@ -10,15 +10,23 @@ public class Inventory : MonoBehaviour
     public Image[] SlotImage;
     public string[] SlotName;
     private int SlotAvailable;
+    private Button[] SlotButton;
 
     [Header("References")]
     private PlayerMovement PM;
+    public GameObject SelectionPanel;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         PM = FindObjectOfType<PlayerMovement>();
         SlotAvailable = SlotImage.Length;
+        SlotButton = new Button[SlotImage.Length];
+        for (int i = 0; i < SlotImage.Length; i++)
+        {
+            SlotButton[i] = SlotImage[i].GetComponent<Button>();
+            SlotButton[i].enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +45,7 @@ public class Inventory : MonoBehaviour
                 SlotName[i] = name;
                 SlotImage[i].sprite = icon;
                 SlotImage[i].color = new Color(255, 255, 255, 255);
+                SlotButton[i].enabled = true;
                 SlotAvailable--;
                 break;
             }
@@ -51,6 +60,7 @@ public class Inventory : MonoBehaviour
             {
                 SlotName[i] = "Empty";
                 SlotImage[i].color = new Color(255, 255, 255, 0);
+                SlotButton[i].enabled = false;
                 SlotAvailable++;
                 break;
             }
@@ -61,6 +71,7 @@ public class Inventory : MonoBehaviour
     {
         SlotName[slotID] = "Empty";
         SlotImage[slotID].color = new Color(255, 255, 255, 0);
+        SlotButton[slotID].enabled = true;
         SlotAvailable++;
     }
     #endregion
