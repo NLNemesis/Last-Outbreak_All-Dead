@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     [Header("Holder")]
     public Image[] SlotImage;
     public string[] SlotName;
+    public Button[] SlotButton;
     private int SlotAvailable;
 
     [Header("References")]
@@ -37,6 +38,8 @@ public class Inventory : MonoBehaviour
             {
                 SlotName[i] = name;
                 SlotImage[i].sprite = icon;
+                SlotImage[i].color = new Color(255, 255, 255, 255);
+                SlotButton[i].enabled = true;
                 SlotAvailable--;
                 break;
             }
@@ -50,6 +53,8 @@ public class Inventory : MonoBehaviour
             if (SlotName[i] == name)
             {
                 SlotName[i] = "Empty";
+                SlotImage[i].color = new Color(255, 255, 255, 0);
+                SlotButton[i].enabled = false;
                 SlotAvailable++;
                 break;
             }
@@ -59,6 +64,8 @@ public class Inventory : MonoBehaviour
     public void RemoveSpecificSlot(int slotID)
     {
         SlotName[slotID] = "Empty";
+        SlotImage[slotID].color = new Color(255, 255, 255, 0);
+        SlotButton[slotID].enabled = false;
         SlotAvailable++;
     }
     #endregion
