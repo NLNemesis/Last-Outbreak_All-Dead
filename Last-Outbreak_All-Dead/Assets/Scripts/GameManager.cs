@@ -46,4 +46,20 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    #region Cursor Handler
+    public void ToggleCursor(bool toggle)
+    {
+        if (toggle)
+        {
+            Cursor.visible = toggle;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = toggle;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+    #endregion
 }
