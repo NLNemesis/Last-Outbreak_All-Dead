@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PickUpItem : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PickUpItem : MonoBehaviour
     private PlayerMovement PM;
     private Animator animator;
     private Inventory inventory;
+
+    [Space(10)]
+    public UnityEvent InteractionEvent;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -54,7 +58,7 @@ public class PickUpItem : MonoBehaviour
             if (GroundItem) animator.Play("Pick_Down");
             else animator.Play("Pick_Up");
             inventory.AddItem(ItemName, ItemIcon);
-            this.gameObject.SetActive(false);
+            InteractionEvent.Invoke();
         }
     }
 }

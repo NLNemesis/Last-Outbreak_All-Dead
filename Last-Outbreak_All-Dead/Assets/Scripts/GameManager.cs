@@ -62,4 +62,11 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+
+    #region Time Scale
+    public void ChangeTimeScale(float scale)
+    {
+        Time.timeScale = scale;
+    }
+    #endregion
 }
