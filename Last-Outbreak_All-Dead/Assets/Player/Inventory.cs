@@ -26,6 +26,8 @@ public class Inventory : MonoBehaviour
     [Header("Mixed Items")]
     public string[] MixedItemName;
     public Sprite[] MixedItemIcon;
+
+    private List<string> AddedItem = new List<string>();
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,7 @@ public class Inventory : MonoBehaviour
                 SlotImage[i].color = new Color(255, 255, 255, 255);
                 SlotButton[i].enabled = true;
                 SlotAvailable--;
+                AddedItem.Add(name);
                 break;
             }
         }
@@ -169,6 +172,22 @@ public class Inventory : MonoBehaviour
     public void TrashSlot()
     {
         RemoveSpecificSlot(FirstSlot);
+    }
+    #endregion
+
+    #region Check Added Item
+    public bool ItemAdded(string name)
+    {
+        bool Check = false;
+        for (int i = 0; i < AddedItem.Count; i++)
+        {
+            if (name == AddedItem[i])
+            {
+                Check = true;
+                break;
+            }
+        }
+        return Check;
     }
     #endregion
 }
