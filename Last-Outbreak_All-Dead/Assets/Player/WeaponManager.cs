@@ -7,6 +7,7 @@ public class WeaponManager : MonoBehaviour
     #region Variables
     [Header("Controller")]
     public int weaponID;
+    public string weaponName;
 
     private bool aiming;
     private float horizontalMove;
@@ -33,7 +34,7 @@ public class WeaponManager : MonoBehaviour
 
     void HandleMovement()
     {
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") && aiming)
         {
             #region Rotation
             //Rotate Player
@@ -52,13 +53,15 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && !aiming)
         {
             aiming = true;
-            //Change animation layer;
+            PM.FreezePlayer();
+            animator.SetBool(weaponName, true);
         }
 
         if (Input.GetMouseButtonUp(1) && aiming)
         {
             aiming = false;
-            //Change animation layer;
+            PM.UnFreezePlayer();
+            animator.SetBool(weaponName, false);
         }
     }
 }

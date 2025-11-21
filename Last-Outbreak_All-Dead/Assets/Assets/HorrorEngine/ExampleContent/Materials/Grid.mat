@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grid
-  m_Shader: {fileID: -6465566751694194690, guid: 09e4c61dfae86d149a7bfc760bb4e49b, type: 3}
+  m_Shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -111,12 +111,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BottomScale: {r: 1, g: 1, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SideScale: {r: 1, g: 1, b: 0, a: 0}
     - _TopScale: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &4040348037101434455
 MonoBehaviour:
   m_ObjectHideFlags: 11
