@@ -54,6 +54,11 @@
             "globalId": "GlobalObjectId_V1-2-1de7a71667cbf8248bb3378c7ef5f2c7-1590531437-0",
             "source": "builtin",
             "value": "Hierarchy Designer Folder Icon Modern I"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-0-00000000000000000000000000000000-0-0",
+            "source": "builtin",
+            "value": "d_Transform Icon"
         }
     ]
 }
