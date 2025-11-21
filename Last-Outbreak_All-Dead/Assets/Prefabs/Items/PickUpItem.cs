@@ -57,8 +57,13 @@ public class PickUpItem : MonoBehaviour
             CanInteract = false;
             if (GroundItem) animator.Play("Pick_Down");
             else animator.Play("Pick_Up");
+
+            if (!inventory.ItemAdded(ItemName))
+                InteractionEvent.Invoke();
+            else
+                this.gameObject.SetActive(false);
+
             inventory.AddItem(ItemName, ItemIcon);
-            InteractionEvent.Invoke();
         }
     }
 }
