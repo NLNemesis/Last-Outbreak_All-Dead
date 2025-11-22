@@ -3943,6 +3943,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bb1d62b5ed1cc8a4bbd0f3340e561a8f, type: 3}
   - {fileID: 21300000, guid: 487041cc252949a4b8eb973181fcc756, type: 3}
   - {fileID: 21300000, guid: 0169fa288b4c4a540b4be9abe9f3e5b3, type: 3}
+  EquippedIcon: {fileID: 254108363}
+  WeaponModel:
+  - {fileID: 1911333394}
 --- !u!1 &728524198
 GameObject:
   m_ObjectHideFlags: 0
@@ -12890,6 +12893,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d25a1285e079b7d43a6544b2dd834823, type: 3}
+--- !u!1 &1911333394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 122474130112797988, guid: d25a1285e079b7d43a6544b2dd834823, type: 3}
+  m_PrefabInstance: {fileID: 1911333393}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1911333395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 247098746849670204, guid: d25a1285e079b7d43a6544b2dd834823, type: 3}
