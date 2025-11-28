@@ -214,7 +214,8 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < Weapon.Length; i++)
             Weapon[i].SetActive(false);
         Weapon[id].SetActive(true);
-        EquipedImage = SlotImage[FirstSlot];
+        EquipedImage.sprite = SlotImage[FirstSlot].sprite;
+        EquipedImage.color = new Color(255, 255, 255, 255);
     }
     #endregion
 }

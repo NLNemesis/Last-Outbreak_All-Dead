@@ -28,6 +28,7 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         HandleMovement();
+        HandleAnimations();
     }
 
     void HandleMovement()
@@ -35,13 +36,51 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetMouseButton(1) && !aiming)
         {
             aiming = true;
-            animator.SetBool("aiming", true);
+            animator.SetBool("isAiming", true);
+            animator.SetTrigger("Aim");
+            pm.FreezePlayer();
+        }
+
+        if (aiming)
+        {
+            #region Movement-Rotation
+            //Rotate Player
+            horizontalMove = Input.GetAxisRaw("Horizontal") * Time.deltaTime * pm.rotateSpeed;
+            pm.gameObject.transform.Rotate(0, horizontalMove, 0);
+            //View Player
+            verticalMove = Input.GetAxisRaw("Vertical");
+            if (verticalMove > 0)
+            {
+                animator.SetBool("Up", true);
+                animator.SetBool("Center", false);
+                animator.SetBool("Down", false);
+            }
+            else if (verticalMove < 0)
+            {
+                animator.SetBool("Up", false);
+                animator.SetBool("Center", false);
+                animator.SetBool("Down", true);
+            }
+            else
+            {
+                animator.SetBool("Up", false);
+                animator.SetBool("Center", true);
+                animator.SetBool("Down", false);
+            }
+            #endregion
         }
 
         if (Input.GetMouseButtonUp(1) && aiming)
         {
             aiming = false;
             animator.SetBool("aiming", false);
+            animator.SetTrigger("Aim");
+            pm.UnFreezePlayer();
         }
+    }
+
+    void HandleAnimations()
+    {
+
     }
 }
