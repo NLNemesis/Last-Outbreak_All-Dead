@@ -5,14 +5,24 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     #region Variables
-    public int gunID;
     public RuntimeAnimatorController controller;
+
+    [Header("Data")]
+    public int gunID;
+    public float damage;
+    public int ammo;
+    public int maxAmmo;
+
+    [Header("Recoil")]
+    public bool Shoot;
+    public float DamageDelay;
+    public float RecoilDelay;
 
     private bool aiming;
     private float horizontalMove;
     private float verticalMove;
 
-    [Space(10)]
+    [Header("References")]
     private PlayerMovement pm;
     private Animator animator;
     #endregion
@@ -31,6 +41,7 @@ public class WeaponManager : MonoBehaviour
         HandleAnimations();
     }
 
+    #region Handle Movement
     void HandleMovement()
     {
         if (Input.GetMouseButton(1) && !aiming)
@@ -49,13 +60,13 @@ public class WeaponManager : MonoBehaviour
             pm.gameObject.transform.Rotate(0, horizontalMove, 0);
             //View Player
             verticalMove = Input.GetAxisRaw("Vertical");
-            if (verticalMove > 0)
+            if (verticalMove > 0.2f)
             {
                 animator.SetBool("Up", true);
                 animator.SetBool("Center", false);
                 animator.SetBool("Down", false);
             }
-            else if (verticalMove < 0)
+            else if (verticalMove < -0.2f)
             {
                 animator.SetBool("Up", false);
                 animator.SetBool("Center", false);
@@ -78,9 +89,24 @@ public class WeaponManager : MonoBehaviour
             pm.UnFreezePlayer();
         }
     }
+    #endregion
 
     void HandleAnimations()
     {
+        if (aiming)
+        {
+            if (Input.GetMouseButtonDown(0) && Shoot)
+                StartCoroutine(Shooting());
+        }
+    }
 
+    IEnumerator Shooting()
+    {
+        Shoot = false;
+        animator.SetTrigger("Shoot");
+        yield return new WaitForSeconds(DamageDelay);
+        Debug.Log("Deal Damage");
+        yield return new WaitForSeconds(RecoilDelay - DamageDelay);
+        Shoot = true;
     }
 }
