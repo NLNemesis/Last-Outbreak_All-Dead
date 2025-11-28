@@ -998,7 +998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7596,7 +7596,10 @@ PrefabInstance:
     - {fileID: -2153932072376333516, guid: cb58069a19d7be547a89407ef8bf9de1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2653072073487243750, guid: cb58069a19d7be547a89407ef8bf9de1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1151309010}
   m_SourcePrefab: {fileID: 100100000, guid: cb58069a19d7be547a89407ef8bf9de1, type: 3}
 --- !u!4 &1151309008 stripped
 Transform:
@@ -7608,6 +7611,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2653072073487243750, guid: cb58069a19d7be547a89407ef8bf9de1, type: 3}
   m_PrefabInstance: {fileID: 1151309007}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1151309010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151309009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunID: 0
+  controller: {fileID: 9100000, guid: c32ad7c3fdf6f7b40839cd2c12630dc4, type: 2}
 --- !u!1 &1166260688
 GameObject:
   m_ObjectHideFlags: 0
