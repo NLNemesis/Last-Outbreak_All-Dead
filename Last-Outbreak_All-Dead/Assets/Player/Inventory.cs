@@ -28,6 +28,9 @@ public class Inventory : MonoBehaviour
     public Sprite[] MixedItemIcon;
 
     private List<string> AddedItem = new List<string>();
+
+    [Space(10)]
+    public GameObject[] Weapon;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -114,6 +117,18 @@ public class Inventory : MonoBehaviour
             RemoveSpecificSlot(FirstSlot);
             //Heal Player
         }
+        else if (SlotName[FirstSlot] == "Knife")
+        {
+            EquipWeapon(0);
+        }
+        else if (SlotName[FirstSlot] == "Pistol")
+        {
+            EquipWeapon(1);
+        }
+        else if (SlotName[FirstSlot] == "Rifle")
+        {
+            EquipWeapon(2);
+        }
 
         SelectionPanel.SetActive(false);
     }
@@ -189,6 +204,17 @@ public class Inventory : MonoBehaviour
             }
         }
         return Check;
+    }
+    #endregion
+
+    #region Equip Weapon
+    public Image EquipedImage;
+    void EquipWeapon(int id)
+    {
+        for (int i = 0; i < Weapon.Length; i++)
+            Weapon[i].SetActive(false);
+        Weapon[id].SetActive(true);
+        EquipedImage = SlotImage[FirstSlot];
     }
     #endregion
 }
