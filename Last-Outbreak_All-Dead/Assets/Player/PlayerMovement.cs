@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        AS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
