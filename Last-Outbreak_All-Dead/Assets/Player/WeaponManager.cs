@@ -122,7 +122,8 @@ public class WeaponManager : MonoBehaviour
             animator.Play("Shoot");
         //Shooting
         ammo--;
-        muzzleFlash.Play();
+        if (muzzleFlash != null)
+            muzzleFlash.Play();
         yield return new WaitForSeconds(damageDelay);
         //Raycast
         #region Shoot Raycast
