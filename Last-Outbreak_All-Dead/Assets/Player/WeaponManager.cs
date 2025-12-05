@@ -9,6 +9,12 @@ public class WeaponManager : MonoBehaviour
     public int gunID;
     public RuntimeAnimatorController controller;
 
+    [Header("Stats")]
+    public int ammo;
+    public int mag;
+    public float recoil;
+    private bool canShoot;
+
     [Header("References")]
     private PlayerMovement pm;
     private Animator animator;
@@ -26,6 +32,7 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         HandleMovement();
+        HandleWeapon();
     }
 
     #region Handle Movement
@@ -79,6 +86,19 @@ public class WeaponManager : MonoBehaviour
             animator.SetBool("aiming", false);
             animator.SetTrigger("aim");
             pm.UnfreezePlayer();
+        }
+    }
+    #endregion
+
+    #region Handle Weapon
+    void HandleWeapon()
+    {
+        if (aiming)
+        {
+            if (canShoot && ammo > 0)
+            {
+                //Shoot
+            }
         }
     }
     #endregion
