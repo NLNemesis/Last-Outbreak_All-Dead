@@ -13,7 +13,7 @@ public class WeaponManager : MonoBehaviour
     public int ammo;
     public int mag;
     public float recoil;
-    private bool canShoot;
+    private bool canShoot = true;
 
     [Header("References")]
     private PlayerMovement pm;
@@ -95,11 +95,19 @@ public class WeaponManager : MonoBehaviour
     {
         if (aiming)
         {
-            if (canShoot && ammo > 0)
+            if (Input.GetMouseButtonDown(0) && canShoot && ammo > 0)
             {
-                //Shoot
+                StartCoroutine(ShootHandle());
             }
         }
+    }
+
+    IEnumerator ShootHandle()
+    {
+        canShoot = false;
+        animator.SetTrigger("Shoot");
+        yield return new WaitForSeconds(recoil);
+        canShoot = true;
     }
     #endregion
 }
