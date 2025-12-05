@@ -142,6 +142,14 @@ public class Inventory : MonoBehaviour
             EquippedImage.sprite = SlotImage[FirstSlot].sprite;
             EquippedImage.color = new Color(255, 255, 255, 255);
         }
+        else if (SlotName[FirstSlot] == "Shotgun")
+        {
+            for (int i = 0; i < Weapon.Length; i++)
+                Weapon[i].SetActive(false);
+            Weapon[3].SetActive(true);
+            EquippedImage.sprite = SlotImage[FirstSlot].sprite;
+            EquippedImage.color = new Color(255, 255, 255, 255);
+        }
 
         SelectionPanel.SetActive(false);
     }

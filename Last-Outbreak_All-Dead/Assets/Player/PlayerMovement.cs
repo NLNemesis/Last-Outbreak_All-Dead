@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         verticalMove = 0;
     }
 
-    public void UnFreezePlayer()
+    public void UnfreezePlayer()
     {
         freeze = false;
     }

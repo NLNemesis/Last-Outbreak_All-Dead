@@ -9,14 +9,15 @@ public class GameManager : MonoBehaviour
     private int UIOpened;
 
     [Header("References")]
-    public GameObject InventoryUI;
+    public GameObject inventoryUI;
     public UnityEvent OpenInventoryEvent;
     public UnityEvent CloseInventoryEvent;
+    private PlayerMovement pm;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
-        
+        pm = FindObjectOfType<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (InventoryUI.activeSelf == false)
+            if (inventoryUI.activeSelf == false)
             {
                 UIOpened = 2;
                 Time.timeScale = 0.001f;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
                 UIOpened = 0;
                 Time.timeScale = 1;
                 CloseInventoryEvent.Invoke();
+                pm.UnfreezePlayer();
             }
         }
     }

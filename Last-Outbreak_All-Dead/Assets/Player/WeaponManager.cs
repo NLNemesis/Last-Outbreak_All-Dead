@@ -13,6 +13,7 @@ public class WeaponManager : MonoBehaviour
     private PlayerMovement pm;
     private Animator animator;
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,7 @@ public class WeaponManager : MonoBehaviour
             aiming = true;
             animator.SetBool("aiming", true);
             animator.SetTrigger("aim");
+            pm.FreezePlayer();
         }
 
         //While Aiming
@@ -49,8 +51,7 @@ public class WeaponManager : MonoBehaviour
             horizontalMove = Input.GetAxisRaw("Horizontal") * Time.deltaTime * pm.rotateSpeed;
             pm.gameObject.transform.Rotate(0, horizontalMove, 0);
             //Move Player
-            verticalMove = Input.GetAxisRaw("Vertical");
-            
+            verticalMove = Input.GetAxisRaw("Vertical");    
         }
 
         //Stop Aiming
@@ -59,6 +60,7 @@ public class WeaponManager : MonoBehaviour
             aiming = false;
             animator.SetBool("aiming", false);
             animator.SetTrigger("aim");
+            pm.UnfreezePlayer();
         }
     }
     #endregion

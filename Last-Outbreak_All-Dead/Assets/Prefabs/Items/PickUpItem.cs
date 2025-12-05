@@ -57,13 +57,18 @@ public class PickUpItem : MonoBehaviour
             CanInteract = false;
             if (GroundItem) animator.Play("Pick_Down");
             else animator.Play("Pick_Up");
-
-            if (!inventory.ItemAdded(ItemName))
-                InteractionEvent.Invoke();
-            else
-                this.gameObject.SetActive(false);
-
-            inventory.AddItem(ItemName, ItemIcon);
+            StartCoroutine(DisableDelay());
         }
+    }
+
+    IEnumerator DisableDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (!inventory.ItemAdded(ItemName))
+            InteractionEvent.Invoke();
+        else
+            this.gameObject.SetActive(false);
+
+        inventory.AddItem(ItemName, ItemIcon);
     }
 }
