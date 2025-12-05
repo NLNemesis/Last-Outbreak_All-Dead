@@ -61,21 +61,21 @@ public class WeaponManager : MonoBehaviour
             verticalMove = Input.GetAxisRaw("Vertical");
             if (verticalMove > 0.1f)
             {
-                animator.SetBool("Up", true);
-                animator.SetBool("Center", false);
-                animator.SetBool("Down", false);
+                animator.SetBool("up", true);
+                animator.SetBool("center", false);
+                animator.SetBool("down", false);
             }
             else if (verticalMove < -0.1f)
             {
-                animator.SetBool("Up", false);
-                animator.SetBool("Center", false);
-                animator.SetBool("Down", true);
+                animator.SetBool("up", false);
+                animator.SetBool("center", false);
+                animator.SetBool("down", true);
             }
             else
             {
-                animator.SetBool("Up", false);
-                animator.SetBool("Center", true);
-                animator.SetBool("Down", false);
+                animator.SetBool("up", false);
+                animator.SetBool("center", true);
+                animator.SetBool("down", false);
             }
         }
 
@@ -95,7 +95,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (aiming)
         {
-            if (Input.GetMouseButtonDown(0) && canShoot && ammo > 0)
+            if (Input.GetMouseButton(0) && canShoot && ammo > 0)
             {
                 StartCoroutine(ShootHandle());
             }
@@ -105,7 +105,12 @@ public class WeaponManager : MonoBehaviour
     IEnumerator ShootHandle()
     {
         canShoot = false;
-        animator.SetTrigger("Shoot");
+        if (verticalMove > 0.1f)
+            animator.Play("Shoot_Up");
+        else if (verticalMove < -0.1f)
+            animator.Play("Shoot_Down");
+        else
+            animator.Play("Shoot");
         yield return new WaitForSeconds(recoil);
         canShoot = true;
     }

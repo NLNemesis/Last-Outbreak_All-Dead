@@ -2148,7 +2148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunID: 2
-  controller: {fileID: 9100000, guid: 7a68e61fcb3a650469a2a43effe70957, type: 2}
+  controller: {fileID: 9100000, guid: f4c7dd4add797614984a79c0f15c0124, type: 2}
+  ammo: 30
+  mag: 30
+  recoil: 0.15
 --- !u!1 &318039776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,7 +2342,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunID: 3
-  controller: {fileID: 9100000, guid: db9fdae239bb2db4ba44b7336003c831, type: 2}
+  controller: {fileID: 9100000, guid: 6c6748352bd5b884d908562ba3acb041, type: 2}
+  ammo: 8
+  mag: 8
+  recoil: 1
 --- !u!1 &355212987
 GameObject:
   m_ObjectHideFlags: 0
@@ -10412,7 +10418,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunID: 0
-  controller: {fileID: 9100000, guid: 3dc47bc187767414faa6687e3cb14030, type: 2}
+  controller: {fileID: 9100000, guid: b8fca8456ab08784ebf90bb503f27a36, type: 2}
+  ammo: 1
+  mag: 1
+  recoil: 1
 --- !u!1 &1166260688
 GameObject:
   m_ObjectHideFlags: 0
@@ -12089,7 +12098,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 821785136}
+      - m_Target: {fileID: 381091363}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -15750,6 +15759,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunID: 1
   controller: {fileID: 9100000, guid: 708d81b59a964de47b4a46595c6e68af, type: 2}
+  ammo: 8
+  mag: 8
+  recoil: 1
 --- !u!1 &1626918427
 GameObject:
   m_ObjectHideFlags: 0
