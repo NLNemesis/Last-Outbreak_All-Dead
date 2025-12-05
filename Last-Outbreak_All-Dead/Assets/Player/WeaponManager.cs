@@ -51,7 +51,25 @@ public class WeaponManager : MonoBehaviour
             horizontalMove = Input.GetAxisRaw("Horizontal") * Time.deltaTime * pm.rotateSpeed;
             pm.gameObject.transform.Rotate(0, horizontalMove, 0);
             //Move Player
-            verticalMove = Input.GetAxisRaw("Vertical");    
+            verticalMove = Input.GetAxisRaw("Vertical");
+            if (verticalMove > 0.1f)
+            {
+                animator.SetBool("Up", true);
+                animator.SetBool("Center", false);
+                animator.SetBool("Down", false);
+            }
+            else if (verticalMove < -0.1f)
+            {
+                animator.SetBool("Up", false);
+                animator.SetBool("Center", false);
+                animator.SetBool("Down", true);
+            }
+            else
+            {
+                animator.SetBool("Up", false);
+                animator.SetBool("Center", true);
+                animator.SetBool("Down", false);
+            }
         }
 
         //Stop Aiming
