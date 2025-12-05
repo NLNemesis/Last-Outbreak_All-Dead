@@ -14,6 +14,14 @@ public class WeaponManager : MonoBehaviour
     public int mag;
     public float recoil;
     private bool canShoot = true;
+    public float damageDelay;
+    public int damage;
+
+    [Header("System")]
+    public ParticleSystem muzzleFlash;
+    public Transform rayStart;
+    public float range;
+    public LayerMask layer;
 
     [Header("References")]
     private PlayerMovement pm;
@@ -105,13 +113,23 @@ public class WeaponManager : MonoBehaviour
     IEnumerator ShootHandle()
     {
         canShoot = false;
+        //Rotation Check
         if (verticalMove > 0.1f)
             animator.Play("Shoot_Up");
         else if (verticalMove < -0.1f)
             animator.Play("Shoot_Down");
         else
             animator.Play("Shoot");
-        yield return new WaitForSeconds(recoil);
+        //Shooting
+        ammo--;
+        muzzleFlash.Play();
+        yield return new WaitForSeconds(damageDelay);
+        //Raycast
+        #region Shoot Raycast
+        Debug.DrawRay(rayStart.position, rayStart.forward * range, Color.red, 1f);
+        #endregion
+        //Reset
+        yield return new WaitForSeconds(recoil - damageDelay);
         canShoot = true;
     }
     #endregion

@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
     private float inputV;
     private float inputH;
+
+    [Header("Audio")]
+    public AudioClip[] audioClip;
+    private AudioSource AS;
     #endregion
 
     // Start is called before the first frame update
@@ -121,6 +125,14 @@ public class PlayerMovement : MonoBehaviour
     public void UnfreezePlayer()
     {
         freeze = false;
+    }
+    #endregion
+
+    #region Handle Audio
+    public void PlayAudio(int id)
+    {
+        AS.clip = audioClip[id];
+        AS.Play();
     }
     #endregion
 }
