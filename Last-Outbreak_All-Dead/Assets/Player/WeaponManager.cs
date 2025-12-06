@@ -19,7 +19,7 @@ public class WeaponManager : MonoBehaviour
 
     [Header("System")]
     public ParticleSystem muzzleFlash;
-    public Transform rayStart;
+    public Transform rayPoint;
     public float range;
     public LayerMask layer;
 
