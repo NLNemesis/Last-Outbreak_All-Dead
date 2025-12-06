@@ -113,7 +113,22 @@ public class WeaponManager : MonoBehaviour
     IEnumerator ShootHandle()
     {
         canShoot = false;
-        yield return new WaitForSeconds(recoil);
+        //Shoot Rotation
+        if (verticalMove > 0.1f)
+            animator.Play("Shoot_Up");
+        else if (verticalMove < -0.1f)
+            animator.Play("Shoot_Down");
+        else
+            animator.Play("Shoot_Center");
+        //Effects
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.Play();
+            ammo--;
+        }
+        yield return new WaitForSeconds(damageDelay);
+        Debug.DrawRay(rayPoint.position, rayPoint.forward * range, Color.red, 1f);
+        yield return new WaitForSeconds(recoil - damageDelay);
         canShoot = true;
     }
     #endregion

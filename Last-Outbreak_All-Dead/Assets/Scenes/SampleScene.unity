@@ -2189,7 +2189,7 @@ MonoBehaviour:
   damageDelay: 0
   damage: 25
   muzzleFlash: {fileID: 0}
-  rayStart: {fileID: 78441081}
+  rayPoint: {fileID: 0}
   range: 10
   layer:
     serializedVersion: 2
@@ -2394,7 +2394,7 @@ MonoBehaviour:
   damageDelay: 0
   damage: 75
   muzzleFlash: {fileID: 0}
-  rayStart: {fileID: 2060604875}
+  rayPoint: {fileID: 0}
   range: 5
   layer:
     serializedVersion: 2
@@ -10622,7 +10622,7 @@ MonoBehaviour:
   damageDelay: 0.1
   damage: 45
   muzzleFlash: {fileID: 0}
-  rayStart: {fileID: 2043323789}
+  rayPoint: {fileID: 2043323789}
   range: 0.7
   layer:
     serializedVersion: 2
@@ -15973,7 +15973,7 @@ MonoBehaviour:
   damageDelay: 0
   damage: 35
   muzzleFlash: {fileID: 0}
-  rayStart: {fileID: 976497788}
+  rayPoint: {fileID: 0}
   range: 7.5
   layer:
     serializedVersion: 2
