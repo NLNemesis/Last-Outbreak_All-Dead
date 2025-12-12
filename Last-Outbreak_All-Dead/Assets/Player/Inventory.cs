@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour
     [Header("Weapons")]
     public Image EquippedImage;
     public GameObject[] Weapon;
+    public int[] AmmoType;
     #endregion
     // Start is called before the first frame update
     void Start()

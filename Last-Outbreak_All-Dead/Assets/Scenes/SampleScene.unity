@@ -2181,10 +2181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Holds: 0
   gunID: 2
   controller: {fileID: 9100000, guid: f4c7dd4add797614984a79c0f15c0124, type: 2}
   ammo: 30
   mag: 30
+  reloadDelay: 0
   recoil: 0.1
   damageDelay: 0
   damage: 25
@@ -2386,10 +2388,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Holds: 0
   gunID: 3
   controller: {fileID: 9100000, guid: 6c6748352bd5b884d908562ba3acb041, type: 2}
   ammo: 8
   mag: 8
+  reloadDelay: 0
   recoil: 1
   damageDelay: 0
   damage: 75
@@ -5738,7 +5742,7 @@ Animator:
   m_GameObject: {fileID: 716695325}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 3f27c77ae52e1074cbbe47acddea4495, type: 3}
-  m_Controller: {fileID: 9100000, guid: 110e7d22b46c381478d4ab6adb2999da, type: 2}
+  m_Controller: {fileID: 9100000, guid: 708d81b59a964de47b4a46595c6e68af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5824,6 +5828,7 @@ MonoBehaviour:
   - {fileID: 1626243507}
   - {fileID: 306972992}
   - {fileID: 327200191}
+  AmmoType: 0000000000000000000000000000000000000000
 --- !u!82 &716695334
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8714,13 +8719,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976497787}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.1236, y: 0.0227, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1626243506}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &979530568
 GameObject:
   m_ObjectHideFlags: 0
@@ -9388,6 +9393,16 @@ Transform:
   - {fileID: 1934899561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1036419686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+  m_PrefabInstance: {fileID: 1174111294}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1036419690 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2511017312123478491, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+  m_PrefabInstance: {fileID: 1174111294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1049382982
 GameObject:
   m_ObjectHideFlags: 0
@@ -10614,10 +10629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Holds: 0
   gunID: 0
   controller: {fileID: 9100000, guid: b8fca8456ab08784ebf90bb503f27a36, type: 2}
   ammo: 1
   mag: 1
+  reloadDelay: 0
   recoil: 1
   damageDelay: 0.1
   damage: 45
@@ -11059,6 +11076,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171145380}
   m_CullTransparentMesh: 1
+--- !u!1001 &1174111294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1626243506}
+    m_Modifications:
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.12360022
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.022699991
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.0000000070385755
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000029802305
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825455884862410678, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929726956144024442, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_Name
+      value: GunMuzzleFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929726956144024442, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4024183021695630716, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+    - {fileID: -2838436078910754859, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c3fb96d686b8ec3459f33993bec943ae, type: 3}
 --- !u!1 &1174692835
 GameObject:
   m_ObjectHideFlags: 0
@@ -15938,6 +16018,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4301339668756675137, guid: e1e6356a016579f43b5552bf2db7650a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 976497788}
+    - targetCorrespondingSourceObject: {fileID: 4301339668756675137, guid: e1e6356a016579f43b5552bf2db7650a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1036419686}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2056765183083116819, guid: e1e6356a016579f43b5552bf2db7650a, type: 3}
       insertIndex: -1
@@ -15965,15 +16048,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Holds: 0
   gunID: 1
   controller: {fileID: 9100000, guid: 708d81b59a964de47b4a46595c6e68af, type: 2}
   ammo: 8
   mag: 8
+  reloadDelay: 1
   recoil: 1
   damageDelay: 0
   damage: 35
-  muzzleFlash: {fileID: 0}
-  rayPoint: {fileID: 0}
+  muzzleFlash: {fileID: 1036419690}
+  rayPoint: {fileID: 976497788}
   range: 7.5
   layer:
     serializedVersion: 2
