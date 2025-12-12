@@ -10636,7 +10636,7 @@ MonoBehaviour:
   mag: 1
   reloadDelay: 0
   recoil: 1
-  damageDelay: 0.1
+  damageDelay: 0.2
   damage: 45
   muzzleFlash: {fileID: 0}
   rayPoint: {fileID: 2043323789}
