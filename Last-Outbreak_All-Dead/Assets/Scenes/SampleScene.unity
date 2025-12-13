@@ -2181,8 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Holds: 0
-  gunID: 2
+  ammoID: 0
   controller: {fileID: 9100000, guid: f4c7dd4add797614984a79c0f15c0124, type: 2}
   ammo: 30
   mag: 30
@@ -2388,8 +2387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Holds: 0
-  gunID: 3
+  ammoID: 0
   controller: {fileID: 9100000, guid: 6c6748352bd5b884d908562ba3acb041, type: 2}
   ammo: 8
   mag: 8
@@ -5828,7 +5826,7 @@ MonoBehaviour:
   - {fileID: 1626243507}
   - {fileID: 306972992}
   - {fileID: 327200191}
-  AmmoType: 0000000000000000000000000000000000000000
+  AmmoType: 3200000032000000320000003200000032000000
 --- !u!82 &716695334
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10629,8 +10627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Holds: 0
-  gunID: 0
+  ammoID: 0
   controller: {fileID: 9100000, guid: b8fca8456ab08784ebf90bb503f27a36, type: 2}
   ammo: 1
   mag: 1
@@ -16048,8 +16045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123354b809709f42bca09ee56fc3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Holds: 0
-  gunID: 1
+  ammoID: 0
   controller: {fileID: 9100000, guid: 708d81b59a964de47b4a46595c6e68af, type: 2}
   ammo: 8
   mag: 8
@@ -22466,5 +22462,5 @@ SceneRoots:
   - {fileID: 1960964973}
   - {fileID: 1590531438}
   - {fileID: 2783249964971312661}
-  - {fileID: 1428179350}
   - {fileID: 734587035}
+  - {fileID: 1428179350}
