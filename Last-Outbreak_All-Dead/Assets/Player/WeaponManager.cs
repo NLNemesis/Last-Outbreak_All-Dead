@@ -16,7 +16,7 @@ public class WeaponManager : MonoBehaviour
     public int mag;
     public float reloadDelay;
     public float recoil;
-    private bool canShoot = true;
+    private bool canUseAction = true;
     public float damageDelay;
     public int damage;
 
@@ -46,6 +46,7 @@ public class WeaponManager : MonoBehaviour
     {
         HandleMovement();
         HandleWeapon();
+        HandleReload();
     }
 
     #region Handle Movement
@@ -113,7 +114,7 @@ public class WeaponManager : MonoBehaviour
             else 
                 Holds = false;
 
-            if (Holds && canShoot && ammo > 0)
+            if (Holds && canUseAction && ammo > 0)
             {
                 StartCoroutine(ShootHandle());
             }
@@ -122,7 +123,7 @@ public class WeaponManager : MonoBehaviour
 
     IEnumerator ShootHandle()
     {
-        canShoot = false;
+        canUseAction = false;
         //Shoot Rotation
         if (verticalMove > 0.1f)
             animator.Play("Shoot_Up");
@@ -139,7 +140,35 @@ public class WeaponManager : MonoBehaviour
         yield return new WaitForSeconds(damageDelay);
         Debug.DrawRay(rayPoint.position, rayPoint.forward * range, Color.red, 1f);
         yield return new WaitForSeconds(recoil - damageDelay);
-        canShoot = true;
+        canUseAction = true;
+    }
+    #endregion
+
+    #region Handle Reload
+    void HandleReload()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && aiming && canUseAction && ammo < mag)
+        {
+            StartCoroutine(Reloading());
+        }
+    }
+
+    IEnumerator Reloading()
+    {
+        canUseAction = false;
+        inventory.AmmoType[ammoID] = ammo;
+        if (inventory.AmmoType[ammoID] - mag > 0)
+        {
+            ammo = mag;
+            inventory.AmmoType[ammoID] -= mag;
+        }
+        else
+        {
+            ammo = inventory.AmmoType[ammoID];
+            inventory.AmmoType[ammoID] = 0;
+        }
+        yield return new WaitForSeconds(reloadDelay);
+        canUseAction = true;
     }
     #endregion
 }
