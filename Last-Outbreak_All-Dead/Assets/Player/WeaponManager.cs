@@ -5,10 +5,10 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     #region Variables
-    public bool Holds;
+    private bool Holds;
 
     [Header("Controller")]
-    public int gunID;
+    public int ammoID;
     public RuntimeAnimatorController controller;
 
     [Header("Stats")]
@@ -46,7 +46,6 @@ public class WeaponManager : MonoBehaviour
     {
         HandleMovement();
         HandleWeapon();
-        HandleReload();
     }
 
     #region Handle Movement
@@ -140,36 +139,6 @@ public class WeaponManager : MonoBehaviour
         yield return new WaitForSeconds(damageDelay);
         Debug.DrawRay(rayPoint.position, rayPoint.forward * range, Color.red, 1f);
         yield return new WaitForSeconds(recoil - damageDelay);
-        canShoot = true;
-    }
-    #endregion
-
-    #region Handle Reload
-    void HandleReload()
-    {
-        if (Input.GetKeyDown(KeyCode.R) && canShoot && ammo < mag && aiming)
-        {
-            StartCoroutine(Reloading());
-        }
-    }
-
-    IEnumerator Reloading()
-    {
-        canShoot = false;
-        animator.Play("Reload");
-        inventory.AmmoType[gunID] += ammo;
-        ammo = 0;
-        if (inventory.AmmoType[gunID] - mag > 0)
-        {
-            ammo = mag;
-            inventory.AmmoType[gunID] -= mag;
-        }
-        else
-        {
-            ammo = inventory.AmmoType[gunID];
-            inventory.AmmoType[gunID] = 0;
-        }
-        yield return new WaitForSeconds(reloadDelay);
         canShoot = true;
     }
     #endregion
