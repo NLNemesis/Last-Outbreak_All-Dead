@@ -155,8 +155,9 @@ public class WeaponManager : MonoBehaviour
 
     IEnumerator Reloading()
     {
+        animator.Play("Reload");
         canUseAction = false;
-        inventory.AmmoType[ammoID] = ammo;
+        inventory.AmmoType[ammoID] += ammo;
         if (inventory.AmmoType[ammoID] - mag > 0)
         {
             ammo = mag;
