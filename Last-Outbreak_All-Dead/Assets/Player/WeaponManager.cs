@@ -25,6 +25,9 @@ public class WeaponManager : MonoBehaviour
     public Transform rayPoint;
     public float range;
     public LayerMask layer;
+    [Space(10)]
+    public string[] impactName;
+    public GameObject[] impact;
 
     [Header("References")]
     private PlayerMovement pm;
@@ -139,6 +142,21 @@ public class WeaponManager : MonoBehaviour
         }
         yield return new WaitForSeconds(damageDelay);
         Debug.DrawRay(rayPoint.position, rayPoint.forward * range, Color.red, 1f);
+        RaycastHit hit;
+        if (Physics.Raycast(rayPoint.position, rayPoint.forward * range, out hit, layer))
+        {
+            AIMove aiMove = hit.transform.GetComponent<AIMove>();
+            if (aiMove != null)
+            {
+                aiMove.TakeDamage(damage);
+            }
+
+            for(int i = 0; i < impact.Length; i++)
+            {
+                if (hit.collider.tag == impactName[i])
+                    Instantiate(impact[i], hit.point, Quaternion.LookRotation(hit.normal));
+            }
+        }
         yield return new WaitForSeconds(recoil - damageDelay);
         canUseAction = true;
     }

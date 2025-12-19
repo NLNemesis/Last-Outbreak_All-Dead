@@ -8,6 +8,8 @@ using UnityEngine.Events;
 public class AIMove : MonoBehaviour
 {
     #region Variables
+    private bool Freeze;
+
     [Header("Stats")]
     public int health;
     public float speed;
@@ -48,9 +50,11 @@ public class AIMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Freeze) return;
         HandleMovement();
     }
 
+    #region Handle Movement
     void HandleMovement()
     {
         if (playerDetected)
@@ -66,4 +70,38 @@ public class AIMove : MonoBehaviour
             agent.SetDestination(this.transform.position);
         }
     }
+    #endregion
+
+    #region Take Damage
+    public void TakeDamage(int value)
+    {
+        health -= value;
+        if (health <= 0)
+        {
+            AIFreeze();
+            animator.Play("Death");
+        }
+        else
+        {
+            AIFreeze();
+            animator.Play("Hit");
+            playerDetected = true;
+        }
+    }
+    #endregion
+
+    #region Freeze/Unfreeze
+    public void AIFreeze()
+    {
+        animator.Play("Idle");
+        agent.speed = 0;
+        Freeze = true;
+    }
+
+    public void AIUnfreeze()
+    {
+        agent.speed = currentSpeed;
+        Freeze = false;
+    }
+    #endregion
 }
