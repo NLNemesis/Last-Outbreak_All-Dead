@@ -32,6 +32,12 @@ public class AIMove : MonoBehaviour
             playerDetected = true;
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.name == "Player")
+            playerDetected = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -46,13 +52,34 @@ public class AIMove : MonoBehaviour
             agent.SetDestination(player.transform.position);
             animator.Play("Walk");
         }
-        
-        if (playerDetected && !player.activeSelf)
+        else if (playerDetected && !player.activeSelf)
         {
             playerDetected = false;
             agent.speed = 0;
             agent.SetDestination(this.transform.position);
             animator.Play("Idle");
+        }
+        else
+        {
+            playerDetected = false;
+            agent.speed = 0;
+            agent.SetDestination(this.transform.position);
+            animator.Play("Idle");
+        }
+    }
+
+    public void TakeDamage(int value)
+    {
+        health -= value;
+
+        if (health <= 0)
+        {
+            agent.enabled = false;
+            animator.Play("Death");
+        }
+        else
+        {
+            animator.Play("Hit");
         }
     }
 }

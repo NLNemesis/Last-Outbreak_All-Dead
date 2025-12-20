@@ -25,6 +25,9 @@ public class WeaponManager : MonoBehaviour
     public Transform rayPoint;
     public float range;
     public LayerMask layer;
+    [Space(10)]
+    public string[] impactName;
+    public GameObject[] impact;
 
     [Header("References")]
     private PlayerMovement pm;
@@ -139,6 +142,7 @@ public class WeaponManager : MonoBehaviour
         }
         yield return new WaitForSeconds(damageDelay);
         Debug.DrawRay(rayPoint.position, rayPoint.forward * range, Color.red, 1f);
+
         yield return new WaitForSeconds(recoil - damageDelay);
         canUseAction = true;
     }
