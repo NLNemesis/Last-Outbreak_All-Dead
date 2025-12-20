@@ -141,7 +141,20 @@ public class WeaponManager : MonoBehaviour
             ammo--;
         }
         yield return new WaitForSeconds(damageDelay);
+
         Debug.DrawRay(rayPoint.position, rayPoint.forward * range, Color.red, 1f);
+        RaycastHit hit;
+        if (Physics.Raycast(rayPoint.position, rayPoint.forward * range, out hit, layer))
+        {
+            AIMove aiMove = hit.transform.GetComponent<AIMove>();
+
+            if (aiMove != null)
+                aiMove.TakeDamage(damage);
+
+            for (int i = 0; i < impact.Length; i++)
+                if (impactName[i] == hit.collider.tag)
+                    Instantiate(impact[i], hit.point, Quaternion.LookRotation(hit.normal));
+        }
 
         yield return new WaitForSeconds(recoil - damageDelay);
         canUseAction = true;
