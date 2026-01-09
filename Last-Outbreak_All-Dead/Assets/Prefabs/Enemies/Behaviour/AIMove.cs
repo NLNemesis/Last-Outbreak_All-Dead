@@ -19,6 +19,7 @@ public class AIMove : MonoBehaviour
     private GameObject player;
     private PlayerMovement pm;
     private Animator animator;
+    private AIDetect aiDetect;
 
     [Header("Events")]
     public UnityEvent deathEvent;
@@ -32,6 +33,7 @@ public class AIMove : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>().gameObject;
         startTransform.position = this.transform.position;
         startTransform.rotation = this.transform.rotation;
+        aiDetect = GetComponentInChildren<AIDetect>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -113,6 +115,42 @@ public class AIMove : MonoBehaviour
     {
         freeze = false;
         agent.speed = speed;
+    }
+    #endregion
+
+    #region Toggle canAttack dealDamage (AIDetect)
+    public void Toggle_canAttack_true()
+    {
+        aiDetect.canAttack = true;
+    }
+    public void Toggle_canAttack_false()
+    {
+        aiDetect.canAttack = false;
+    }
+
+    public void Toggle_dealDamage_true()
+    {
+        aiDetect.dealDamage = true;
+    }
+    public void Toggle_dealDamage_false()
+    {
+        aiDetect.dealDamage = false;
+    }
+    #endregion
+
+    #region Attack - DealDamage Functions
+    public void Attack()
+    {
+        freeze = true;
+        aiDetect.canAttack = false;
+        animator.Play("Attack");
+    }
+
+    public void DealDamage()
+    {
+        freeze = true;
+        aiDetect.dealDamage = false;
+        //pm.TakeDamage(damage);
     }
     #endregion
 }
