@@ -17,9 +17,9 @@ public class AIMove : MonoBehaviour
     [Header("References")]
     private NavMeshAgent agent;
     private GameObject player;
+    private PlayerMovement pm;
     private Animator animator;
     private Transform startedPosition;
-    private AIDetect aiDetect;
 
     [Header("Events")]
     public UnityEvent deathEvent;
@@ -29,10 +29,10 @@ public class AIMove : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        pm = FindObjectOfType<PlayerMovement>();
         player = FindObjectOfType<PlayerMovement>().gameObject;
         startedPosition.position = this.transform.position;
         startedPosition.rotation = this.transform.rotation;
-        aiDetect = GetComponentInChildren<AIDetect>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,9 +73,9 @@ public class AIMove : MonoBehaviour
         else
         {
             playerDetected = false;
-            agent.speed = 0;
+            agent.speed = currentSpeed;
             agent.SetDestination(startedPosition.position);
-            animator.Play("Walk");
+            animator.Play("Idle");
         }
     }
     #endregion
@@ -99,42 +99,15 @@ public class AIMove : MonoBehaviour
     #endregion
 
     #region Toggle Movement
-    public void Toggle_Freeze(bool value)
-    {
-        freeze = value;
-
-        if (freeze)
-            agent.speed = 0;
-        else
-            agent.speed = currentSpeed;
-    }
-    #endregion
-
-    #region Toggle Variables (AI Detect)
-    public void Toggle_canAttack(bool value)
-    {
-        aiDetect.canAttack = value;
-    }
-    public void Toggle_dealDamage(bool value)
-    {
-        aiDetect.dealDamage = value;
-    }
-    #endregion
-
-    #region Attack - Deal Damage
-    public void Attack()
+    public void Freeze()
     {
         freeze = true;
-        aiDetect.canAttack = false;
-        animator.Play("Attack");
+        agent.speed = 0;
     }
-
-    public void DealDamage()
+    public void Unfreeze()
     {
-        freeze = true;
-        aiDetect.canAttack = false;
-        aiDetect.dealDamage = false;
-        //pm.TakeDamage(damage);
+        freeze = false;
+        agent.speed = currentSpeed;
     }
     #endregion
 }
