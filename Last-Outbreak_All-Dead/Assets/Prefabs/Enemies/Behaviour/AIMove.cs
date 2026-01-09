@@ -8,6 +8,7 @@ public class AIMove : MonoBehaviour
 {
     #region Variables
     [Header("Stats")]
+    public bool freeze;
     public int health;
     public float speed;
     private float currentSpeed;
@@ -18,6 +19,7 @@ public class AIMove : MonoBehaviour
     private GameObject player;
     private Animator animator;
     private Transform startedPosition;
+    private AIDetect aiDetect;
 
     [Header("Events")]
     public UnityEvent deathEvent;
@@ -30,6 +32,7 @@ public class AIMove : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>().gameObject;
         startedPosition.position = this.transform.position;
         startedPosition.rotation = this.transform.rotation;
+        aiDetect = GetComponentInChildren<AIDetect>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,10 +50,11 @@ public class AIMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health > 0)
+        if (health > 0 && !freeze)
             HandleMovement();
     }
 
+    #region Handle Movement
     void HandleMovement()
     {
         if (playerDetected)
@@ -74,7 +78,9 @@ public class AIMove : MonoBehaviour
             animator.Play("Walk");
         }
     }
+    #endregion
 
+    #region Take Damage
     public void TakeDamage(int value)
     {
         health -= value;
@@ -90,4 +96,45 @@ public class AIMove : MonoBehaviour
             animator.Play("Hit");
         }
     }
+    #endregion
+
+    #region Toggle Movement
+    public void Toggle_Freeze(bool value)
+    {
+        freeze = value;
+
+        if (freeze)
+            agent.speed = 0;
+        else
+            agent.speed = currentSpeed;
+    }
+    #endregion
+
+    #region Toggle Variables (AI Detect)
+    public void Toggle_canAttack(bool value)
+    {
+        aiDetect.canAttack = value;
+    }
+    public void Toggle_dealDamage(bool value)
+    {
+        aiDetect.dealDamage = value;
+    }
+    #endregion
+
+    #region Attack - Deal Damage
+    public void Attack()
+    {
+        freeze = true;
+        aiDetect.canAttack = false;
+        animator.Play("Attack");
+    }
+
+    public void DealDamage()
+    {
+        freeze = true;
+        aiDetect.canAttack = false;
+        aiDetect.dealDamage = false;
+        //pm.TakeDamage(damage);
+    }
+    #endregion
 }
