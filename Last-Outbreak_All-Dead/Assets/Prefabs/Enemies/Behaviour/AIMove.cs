@@ -11,15 +11,14 @@ public class AIMove : MonoBehaviour
     public bool freeze;
     public int health;
     public float speed;
-    private float currentSpeed;
     private bool playerDetected;
 
     [Header("References")]
+    public Transform startTransform;
     private NavMeshAgent agent;
     private GameObject player;
     private PlayerMovement pm;
     private Animator animator;
-    private Transform startedPosition;
 
     [Header("Events")]
     public UnityEvent deathEvent;
@@ -31,8 +30,8 @@ public class AIMove : MonoBehaviour
         animator = GetComponent<Animator>();
         pm = FindObjectOfType<PlayerMovement>();
         player = FindObjectOfType<PlayerMovement>().gameObject;
-        startedPosition.position = this.transform.position;
-        startedPosition.rotation = this.transform.rotation;
+        startTransform.position = this.transform.position;
+        startTransform.rotation = this.transform.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,6 +51,15 @@ public class AIMove : MonoBehaviour
     {
         if (health > 0 && !freeze)
             HandleMovement();
+
+        #region If its close to its position
+        float distance = (startTransform.position - this.transform.position).magnitude;
+        if (distance < 1f && !playerDetected)
+        {
+            agent.speed = 0;
+            animator.SetBool("Walk", false);
+        }
+        #endregion
     }
 
     #region Handle Movement
@@ -61,21 +69,18 @@ public class AIMove : MonoBehaviour
         {
             agent.speed = speed;
             agent.SetDestination(player.transform.position);
-            animator.Play("Walk");
+            animator.SetBool("Walk", true);
         }
         else if (playerDetected && !player.activeSelf)
         {
             playerDetected = false;
-            agent.speed = 0;
-            agent.SetDestination(this.transform.position);
-            animator.Play("Idle");
         }
-        else
+
+        if (!playerDetected)
         {
-            playerDetected = false;
-            agent.speed = currentSpeed;
-            agent.SetDestination(startedPosition.position);
-            animator.Play("Idle");
+            agent.speed = speed;
+            agent.SetDestination(startTransform.position);
+            animator.Play("Walk");
         }
     }
     #endregion
@@ -107,7 +112,7 @@ public class AIMove : MonoBehaviour
     public void Unfreeze()
     {
         freeze = false;
-        agent.speed = currentSpeed;
+        agent.speed = speed;
     }
     #endregion
 }
