@@ -17,6 +17,10 @@ public class AIMove : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject player;
     private Animator animator;
+    private Transform startedPosition;
+
+    [Header("Events")]
+    public UnityEvent deathEvent;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -24,6 +28,8 @@ public class AIMove : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         player = FindObjectOfType<PlayerMovement>().gameObject;
+        startedPosition.position = this.transform.position;
+        startedPosition.rotation = this.transform.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,7 +47,8 @@ public class AIMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        if (health > 0)
+            HandleMovement();
     }
 
     void HandleMovement()
@@ -63,8 +70,8 @@ public class AIMove : MonoBehaviour
         {
             playerDetected = false;
             agent.speed = 0;
-            agent.SetDestination(this.transform.position);
-            animator.Play("Idle");
+            agent.SetDestination(startedPosition.position);
+            animator.Play("Walk");
         }
     }
 
@@ -76,6 +83,7 @@ public class AIMove : MonoBehaviour
         {
             agent.enabled = false;
             animator.Play("Death");
+            deathEvent.Invoke();
         }
         else
         {

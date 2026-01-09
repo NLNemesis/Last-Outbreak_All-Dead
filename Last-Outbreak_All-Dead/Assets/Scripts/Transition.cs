@@ -43,15 +43,21 @@ public class Transition : MonoBehaviour
         {
             canInteract = false;
             InteractionEvent.Invoke();
-            //Enable Camera
-            for (int i = 0; i < WorldCamera.Length; i++)
-                WorldCamera[i].SetActive(false);
-            WorldCamera[cameraIndex].SetActive(true);
-            //Teleport Player
-            player.SetActive(false);
-            player.transform.position = newTransform.position;
-            player.transform.rotation = newTransform.rotation;
-            player.SetActive(true);
+            StartCoroutine(spawnPlayerDelay());
         }
+    }
+
+    IEnumerator spawnPlayerDelay()
+    {
+        //Enable Camera
+        for (int i = 0; i < WorldCamera.Length; i++)
+            WorldCamera[i].SetActive(false);
+        WorldCamera[cameraIndex].SetActive(true);
+        //Teleport Player
+        player.SetActive(false);
+        player.transform.position = newTransform.position;
+        player.transform.rotation = newTransform.rotation;
+        yield return new WaitForSeconds(6.9f);
+        player.SetActive(true);
     }
 }
