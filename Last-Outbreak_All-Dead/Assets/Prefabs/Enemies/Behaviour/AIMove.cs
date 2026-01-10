@@ -19,7 +19,6 @@ public class AIMove : MonoBehaviour
     private GameObject player;
     private PlayerMovement pm;
     private Animator animator;
-    private AIDetect aiDetect;
 
     [Header("Events")]
     public UnityEvent deathEvent;
@@ -32,9 +31,7 @@ public class AIMove : MonoBehaviour
         pm = FindObjectOfType<PlayerMovement>();
         player = FindObjectOfType<PlayerMovement>().gameObject;
         startTransform.position = this.transform.position;
-        startTransform.rotation = this.transform.rotation;
-        aiDetect = GetComponentInChildren<AIDetect>();
-    }
+        startTransform.rotation = this.transform.rotation;    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -54,7 +51,7 @@ public class AIMove : MonoBehaviour
         if (health > 0 && !freeze)
             HandleMovement();
 
-        #region If its close to its position
+        #region If it's close to its position
         float distance = (startTransform.position - this.transform.position).magnitude;
         if (distance < 1f && !playerDetected)
         {
@@ -82,7 +79,7 @@ public class AIMove : MonoBehaviour
         {
             agent.speed = speed;
             agent.SetDestination(startTransform.position);
-            animator.Play("Walk");
+            animator.SetBool("Walk", true);
         }
     }
     #endregion
@@ -115,42 +112,6 @@ public class AIMove : MonoBehaviour
     {
         freeze = false;
         agent.speed = speed;
-    }
-    #endregion
-
-    #region Toggle canAttack dealDamage (AIDetect)
-    public void Toggle_canAttack_true()
-    {
-        aiDetect.canAttack = true;
-    }
-    public void Toggle_canAttack_false()
-    {
-        aiDetect.canAttack = false;
-    }
-
-    public void Toggle_dealDamage_true()
-    {
-        aiDetect.dealDamage = true;
-    }
-    public void Toggle_dealDamage_false()
-    {
-        aiDetect.dealDamage = false;
-    }
-    #endregion
-
-    #region Attack - DealDamage Functions
-    public void Attack()
-    {
-        freeze = true;
-        aiDetect.canAttack = false;
-        animator.Play("Attack");
-    }
-
-    public void DealDamage()
-    {
-        freeze = true;
-        aiDetect.dealDamage = false;
-        //pm.TakeDamage(damage);
     }
     #endregion
 }
