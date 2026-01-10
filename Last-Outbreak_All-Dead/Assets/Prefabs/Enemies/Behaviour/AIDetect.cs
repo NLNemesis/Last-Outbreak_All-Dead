@@ -22,5 +22,7 @@ public class AIDetect : MonoBehaviour
             aiMove.Attack();
         else if (other.name == "Player" && dealDamage)
             aiMove.DealDamage();
+        else
+            aiMove.freeze = false;
     }
 }

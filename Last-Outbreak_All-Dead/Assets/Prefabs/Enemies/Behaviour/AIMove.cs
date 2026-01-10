@@ -123,6 +123,7 @@ public class AIMove : MonoBehaviour
     public void Toggle_canAttack_true()
     {
         aiDetect.canAttack = true;
+        freeze = false;
     }
     public void Toggle_canAttack_false()
     {
